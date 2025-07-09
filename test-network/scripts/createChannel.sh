@@ -137,9 +137,9 @@ elif [ "$CHANNEL_NAME" == "channel2" ]; then
   setAnchorPeer 2
 else
   infoln "Unknown channel name, defaulting to Org1 and Org2 join."
-  joinChannel 1
-  joinChannel 2
-  setAnchorPeer 1
-  setAnchorPeer 2
+joinChannel 1
+joinChannel 2
+setAnchorPeer 1
+setAnchorPeer 2
 fi
 successln "Channel '$CHANNEL_NAME' joined"

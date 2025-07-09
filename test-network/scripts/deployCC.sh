@@ -120,24 +120,24 @@ elif [ "$CHANNEL_NAME" == "channel2" ]; then
 else
   # Default to Org1 and Org2 for backward compatibility
   infoln "Installing chaincode on Org1..."
-  installChaincode 1
+installChaincode 1
   infoln "Install chaincode on Org2..."
-  installChaincode 2
-  resolveSequence
-  queryInstalled 1
-  approveForMyOrg 1
+installChaincode 2
+resolveSequence
+queryInstalled 1
+approveForMyOrg 1
   checkCommitReadiness 1 '"Org1MSP": true' '"Org2MSP": false'
   checkCommitReadiness 2 '"Org1MSP": true' '"Org2MSP": false'
-  approveForMyOrg 2
+approveForMyOrg 2
   checkCommitReadiness 1 '"Org1MSP": true' '"Org2MSP": true'
   checkCommitReadiness 2 '"Org1MSP": true' '"Org2MSP": true'
-  commitChaincodeDefinition 1 2
-  queryCommitted 1
-  queryCommitted 2
-  if [ "$CC_INIT_FCN" = "NA" ]; then
-    infoln "Chaincode initialization is not required"
-  else
-    chaincodeInvokeInit 1 2
-  fi
+commitChaincodeDefinition 1 2
+queryCommitted 1
+queryCommitted 2
+if [ "$CC_INIT_FCN" = "NA" ]; then
+  infoln "Chaincode initialization is not required"
+else
+  chaincodeInvokeInit 1 2
+fi
 fi
 exit 0
