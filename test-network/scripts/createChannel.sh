@@ -113,15 +113,33 @@ createChannel $BFT
 successln "Channel '$CHANNEL_NAME' created"
 
 ## Join all the peers to the channel
-infoln "Joining org1 peer to the channel..."
-joinChannel 1
-infoln "Joining org2 peer to the channel..."
-joinChannel 2
-
-## Set the anchor peers for each org in the channel
-infoln "Setting anchor peer for org1..."
-setAnchorPeer 1
-infoln "Setting anchor peer for org2..."
-setAnchorPeer 2
-
+if [ "$CHANNEL_NAME" == "channel1" ]; then
+  infoln "Joining Org1 peer to channel1..."
+  joinChannel 1
+  infoln "Joining Org2 peer to channel1..."
+  joinChannel 2
+  infoln "Joining Org3 peer to channel1..."
+  joinChannel 3
+  infoln "Setting anchor peer for Org1..."
+  setAnchorPeer 1
+  infoln "Setting anchor peer for Org2..."
+  setAnchorPeer 2
+  infoln "Setting anchor peer for Org3..."
+  setAnchorPeer 3
+elif [ "$CHANNEL_NAME" == "channel2" ]; then
+  infoln "Joining Org1 peer to channel2..."
+  joinChannel 1
+  infoln "Joining Org2 peer to channel2..."
+  joinChannel 2
+  infoln "Setting anchor peer for Org1..."
+  setAnchorPeer 1
+  infoln "Setting anchor peer for Org2..."
+  setAnchorPeer 2
+else
+  infoln "Unknown channel name, defaulting to Org1 and Org2 join."
+  joinChannel 1
+  joinChannel 2
+  setAnchorPeer 1
+  setAnchorPeer 2
+fi
 successln "Channel '$CHANNEL_NAME' joined"
